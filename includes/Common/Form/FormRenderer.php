@@ -16,30 +16,30 @@ class FormRenderer
 
         ob_start();
         ?>
-        <div class="rrze-formwizard" id="<?php echo esc_attr($formId); ?>"
+        <div class="rrze-formular" id="<?php echo esc_attr($formId); ?>"
              data-form-id="<?php echo esc_attr($formId); ?>"
              data-steps="<?php echo esc_attr((string) count($steps)); ?>">
             <?php if ($attributes['formTitle'] !== '') : ?>
-                <h2 class="rrze-formwizard__title"><?php echo esc_html($attributes['formTitle']); ?></h2>
+                <h2 class="rrze-formular__title"><?php echo esc_html($attributes['formTitle']); ?></h2>
             <?php endif; ?>
 
             <?php if ($attributes['formDescription'] !== '') : ?>
-                <p class="rrze-formwizard__description"><?php echo esc_html($attributes['formDescription']); ?></p>
+                <p class="rrze-formular__description"><?php echo esc_html($attributes['formDescription']); ?></p>
             <?php endif; ?>
 
             <?php if (count($steps) > 1) : ?>
-                <ol class="rrze-formwizard__progress" aria-label="<?php esc_attr_e('Form progress', 'rrze-formwizard'); ?>">
+                <ol class="rrze-formular__progress" aria-label="<?php esc_attr_e('Form progress', 'rrze-formular'); ?>">
                     <?php foreach ($steps as $index => $stepFields) : ?>
                         <?php $stepNumber = $index + 1; ?>
-                        <li class="rrze-formwizard__progress-item<?php echo $stepNumber === 1 ? ' is-active' : ''; ?>"
+                        <li class="rrze-formular__progress-item<?php echo $stepNumber === 1 ? ' is-active' : ''; ?>"
                             data-step="<?php echo esc_attr((string) $stepNumber); ?>">
-                            <span><?php echo esc_html(sprintf(__('Step %d', 'rrze-formwizard'), $stepNumber)); ?></span>
+                            <span><?php echo esc_html(sprintf(__('Step %d', 'rrze-formular'), $stepNumber)); ?></span>
                         </li>
                     <?php endforeach; ?>
                 </ol>
             <?php endif; ?>
 
-            <form class="rrze-formwizard__form"
+            <form class="rrze-formular__form"
                   method="post"
                   action="#"
                   novalidate
@@ -47,8 +47,8 @@ class FormRenderer
                 <input type="hidden" name="token" value="<?php echo esc_attr($tokenData['token']); ?>">
                 <input type="hidden" name="issuedAt" value="<?php echo esc_attr((string) $tokenData['issuedAt']); ?>">
 
-                <div class="rrze-formwizard__hp" aria-hidden="true">
-                    <label for="<?php echo esc_attr($formId); ?>-website"><?php esc_html_e('Website', 'rrze-formwizard'); ?></label>
+                <div class="rrze-formular__hp" aria-hidden="true">
+                    <label for="<?php echo esc_attr($formId); ?>-website"><?php esc_html_e('Website', 'rrze-formular'); ?></label>
                     <input type="text"
                            id="<?php echo esc_attr($formId); ?>-website"
                            name="website"
@@ -58,12 +58,12 @@ class FormRenderer
 
                 <?php foreach ($steps as $index => $stepFields) : ?>
                     <?php $stepNumber = $index + 1; ?>
-                    <fieldset class="rrze-formwizard__step<?php echo $stepNumber === 1 ? ' is-active' : ''; ?>"
+                    <fieldset class="rrze-formular__step<?php echo $stepNumber === 1 ? ' is-active' : ''; ?>"
                               data-step="<?php echo esc_attr((string) $stepNumber); ?>"
                               <?php echo $stepNumber > 1 ? ' hidden' : ''; ?>>
                         <?php if (count($steps) > 1) : ?>
                             <legend class="screen-reader-text">
-                                <?php echo esc_html(sprintf(__('Step %d', 'rrze-formwizard'), $stepNumber)); ?>
+                                <?php echo esc_html(sprintf(__('Step %d', 'rrze-formular'), $stepNumber)); ?>
                             </legend>
                         <?php endif; ?>
 
@@ -71,19 +71,19 @@ class FormRenderer
                             <?php echo self::renderField($field, $formId); ?>
                         <?php endforeach; ?>
 
-                        <div class="rrze-formwizard__nav">
+                        <div class="rrze-formular__nav">
                             <?php if ($stepNumber > 1) : ?>
-                                <button type="button" class="rrze-formwizard__prev">
-                                    <?php esc_html_e('Back', 'rrze-formwizard'); ?>
+                                <button type="button" class="rrze-formular__prev">
+                                    <?php esc_html_e('Back', 'rrze-formular'); ?>
                                 </button>
                             <?php endif; ?>
 
                             <?php if ($stepNumber < count($steps)) : ?>
-                                <button type="button" class="rrze-formwizard__next">
-                                    <?php esc_html_e('Next', 'rrze-formwizard'); ?>
+                                <button type="button" class="rrze-formular__next">
+                                    <?php esc_html_e('Next', 'rrze-formular'); ?>
                                 </button>
                             <?php else : ?>
-                                <button type="submit" class="rrze-formwizard__submit">
+                                <button type="submit" class="rrze-formular__submit">
                                     <?php echo esc_html($attributes['submitLabel']); ?>
                                 </button>
                             <?php endif; ?>
@@ -91,7 +91,7 @@ class FormRenderer
                     </fieldset>
                 <?php endforeach; ?>
 
-                <div class="rrze-formwizard__message" role="status" aria-live="polite" hidden></div>
+                <div class="rrze-formular__message" role="status" aria-live="polite" hidden></div>
             </form>
         </div>
         <?php
@@ -104,8 +104,8 @@ class FormRenderer
             'formTitle' => sanitize_text_field((string) ($attributes['formTitle'] ?? '')),
             'formDescription' => sanitize_textarea_field((string) ($attributes['formDescription'] ?? '')),
             'recipientEmail' => sanitize_email((string) ($attributes['recipientEmail'] ?? '')),
-            'submitLabel' => sanitize_text_field((string) ($attributes['submitLabel'] ?? __('Send', 'rrze-formwizard'))),
-            'successMessage' => sanitize_text_field((string) ($attributes['successMessage'] ?? __('Thank you. Your message has been sent.', 'rrze-formwizard'))),
+            'submitLabel' => sanitize_text_field((string) ($attributes['submitLabel'] ?? __('Send', 'rrze-formular'))),
+            'successMessage' => sanitize_text_field((string) ($attributes['successMessage'] ?? __('Thank you. Your message has been sent.', 'rrze-formular'))),
             'includeSsoInfo' => !empty($attributes['includeSsoInfo']),
             'sendConfirmation' => !empty($attributes['sendConfirmation']),
             'template' => sanitize_key((string) ($attributes['template'] ?? 'blank')),
@@ -134,7 +134,7 @@ class FormRenderer
     {
         if ($field['type'] === 'heading') {
             return sprintf(
-                '<h3 class="rrze-formwizard__heading">%s</h3>',
+                '<h3 class="rrze-formular__heading">%s</h3>',
                 esc_html($field['label'])
             );
         }
@@ -142,11 +142,11 @@ class FormRenderer
         $fieldId = $formId . '-' . $field['id'];
         $required = !empty($field['required']);
         $requiredAttr = $required ? ' required' : '';
-        $requiredMark = $required ? ' <span class="rrze-formwizard__required" aria-hidden="true">*</span>' : '';
+        $requiredMark = $required ? ' <span class="rrze-formular__required" aria-hidden="true">*</span>' : '';
 
         ob_start();
         ?>
-        <div class="rrze-formwizard__field rrze-formwizard__field--<?php echo esc_attr($field['type']); ?>">
+        <div class="rrze-formular__field rrze-formular__field--<?php echo esc_attr($field['type']); ?>">
             <?php if ($field['type'] !== 'checkbox') : ?>
                 <label for="<?php echo esc_attr($fieldId); ?>">
                     <?php echo esc_html($field['label']); ?><?php echo wp_kses_post($requiredMark); ?>
@@ -161,7 +161,7 @@ class FormRenderer
             <?php elseif ($field['type'] === 'select') : ?>
                 <select id="<?php echo esc_attr($fieldId); ?>"
                         name="<?php echo esc_attr($field['id']); ?>"<?php echo $requiredAttr; ?>>
-                    <option value=""><?php esc_html_e('Please choose…', 'rrze-formwizard'); ?></option>
+                    <option value=""><?php esc_html_e('Please choose…', 'rrze-formular'); ?></option>
                     <?php foreach ($field['options'] as $option) : ?>
                         <option value="<?php echo esc_attr($option['value']); ?>">
                             <?php echo esc_html($option['label']); ?>
@@ -169,11 +169,11 @@ class FormRenderer
                     <?php endforeach; ?>
                 </select>
             <?php elseif ($field['type'] === 'radio') : ?>
-                <fieldset class="rrze-formwizard__radio-group">
+                <fieldset class="rrze-formular__radio-group">
                     <legend class="screen-reader-text"><?php echo esc_html($field['label']); ?></legend>
                     <?php foreach ($field['options'] as $optionIndex => $option) : ?>
                         <?php $optionId = $fieldId . '-' . $optionIndex; ?>
-                        <label class="rrze-formwizard__radio" for="<?php echo esc_attr($optionId); ?>">
+                        <label class="rrze-formular__radio" for="<?php echo esc_attr($optionId); ?>">
                             <input type="radio"
                                    id="<?php echo esc_attr($optionId); ?>"
                                    name="<?php echo esc_attr($field['id']); ?>"
@@ -183,7 +183,7 @@ class FormRenderer
                     <?php endforeach; ?>
                 </fieldset>
             <?php elseif ($field['type'] === 'checkbox') : ?>
-                <label class="rrze-formwizard__checkbox" for="<?php echo esc_attr($fieldId); ?>">
+                <label class="rrze-formular__checkbox" for="<?php echo esc_attr($fieldId); ?>">
                     <input type="checkbox"
                            id="<?php echo esc_attr($fieldId); ?>"
                            name="<?php echo esc_attr($field['id']); ?>"
@@ -198,7 +198,7 @@ class FormRenderer
                        <?php echo $requiredAttr; ?>>
             <?php endif; ?>
 
-            <p class="rrze-formwizard__error" data-field="<?php echo esc_attr($field['id']); ?>" hidden></p>
+            <p class="rrze-formular__error" data-field="<?php echo esc_attr($field['id']); ?>" hidden></p>
         </div>
         <?php
         return (string) ob_get_clean();

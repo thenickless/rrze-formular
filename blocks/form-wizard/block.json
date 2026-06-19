@@ -1,9 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "rrze-formwizard/form-wizard",
-	"version": "0.0.1",
-	"title": "RRZE Form Wizard",
+	"name": "rrze-formular/form-wizard",
+	"version": "0.0.2",
+	"title": "RRZE Formular",
 	"category": "widgets",
 	"description": "Create a simple multi-step form wizard without HTML knowledge.",
 	"icon": "feedback",
@@ -50,10 +50,10 @@
 		"html": false,
 		"align": ["wide", "full"]
 	},
-	"textdomain": "rrze-formwizard",
+	"textdomain": "rrze-formular",
 	"editorScript": "file:../../build/form-wizard.js",
-	"editorStyle": "rrze-formwizard-css",
-	"viewScript": "rrze-formwizard-frontend",
-	"style": "rrze-formwizard-css",
+	"editorStyle": "rrze-formular-css",
+	"viewScript": "rrze-formular-frontend",
+	"style": "rrze-formular-css",
 	"render": "file:./render.php"
 }

@@ -17,7 +17,7 @@ defined('ABSPATH') || exit;
         <input type="hidden" name="wp_settings_submitted[]" value="<?php echo esc_attr($option->getName()); ?>">
 
         <?php if ($error = $option->hasError()) { ?>
-            <div class="rrze-formwizard-settings-error"><?php echo $error; ?></div>
+            <div class="rrze-formular-settings-error"><?php echo $error; ?></div>
         <?php } ?>
     </td>
 </tr>

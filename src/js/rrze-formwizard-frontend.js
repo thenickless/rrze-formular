@@ -1,19 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
-	document.querySelectorAll('.rrze-formwizard').forEach(initFormWizard);
+	document.querySelectorAll('.rrze-formular').forEach(initFormWizard);
 });
 
 function initFormWizard(root) {
-	const form = root.querySelector('.rrze-formwizard__form');
+	const form = root.querySelector('.rrze-formular__form');
 	if (!form) {
 		return;
 	}
 
-	const steps = Array.from(root.querySelectorAll('.rrze-formwizard__step'));
-	const progressItems = Array.from(root.querySelectorAll('.rrze-formwizard__progress-item'));
-	const messageBox = root.querySelector('.rrze-formwizard__message');
+	const steps = Array.from(root.querySelectorAll('.rrze-formular__step'));
+	const progressItems = Array.from(root.querySelectorAll('.rrze-formular__progress-item'));
+	const messageBox = root.querySelector('.rrze-formular__message');
 	let currentStep = 1;
 
-	root.querySelectorAll('.rrze-formwizard__next').forEach((button) => {
+	root.querySelectorAll('.rrze-formular__next').forEach((button) => {
 		button.addEventListener('click', () => {
 			if (!validateStep(root, currentStep)) {
 				return;
@@ -22,7 +22,7 @@ function initFormWizard(root) {
 		});
 	});
 
-	root.querySelectorAll('.rrze-formwizard__prev').forEach((button) => {
+	root.querySelectorAll('.rrze-formular__prev').forEach((button) => {
 		button.addEventListener('click', () => {
 			showStep(currentStep - 1);
 		});
@@ -36,7 +36,7 @@ function initFormWizard(root) {
 			return;
 		}
 
-		const submitButton = form.querySelector('.rrze-formwizard__submit');
+		const submitButton = form.querySelector('.rrze-formular__submit');
 		if (submitButton) {
 			submitButton.disabled = true;
 			submitButton.textContent = RRZEFormWizard.i18n.submitting;
@@ -124,7 +124,7 @@ function collectValues(form) {
 function validateStep(root, stepNumber) {
 	clearErrors(root);
 	let valid = true;
-	const step = root.querySelector(`.rrze-formwizard__step[data-step="${stepNumber}"]`);
+	const step = root.querySelector(`.rrze-formular__step[data-step="${stepNumber}"]`);
 	if (!step) {
 		return true;
 	}
@@ -145,14 +145,14 @@ function validateStep(root, stepNumber) {
 }
 
 function clearErrors(root) {
-	root.querySelectorAll('.rrze-formwizard__error').forEach((error) => {
+	root.querySelectorAll('.rrze-formular__error').forEach((error) => {
 		error.hidden = true;
 		error.textContent = '';
 	});
 }
 
 function showFieldError(root, fieldId, text) {
-	const error = root.querySelector(`.rrze-formwizard__error[data-field="${fieldId}"]`);
+	const error = root.querySelector(`.rrze-formular__error[data-field="${fieldId}"]`);
 	if (error) {
 		error.hidden = false;
 		error.textContent = text;

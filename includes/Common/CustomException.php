@@ -9,6 +9,6 @@ class CustomException extends \Exception
     {
         parent::__construct($message, $code, $previous);
 
-        do_action('rrze.log.error', ['plugin' => 'rrze-formwizard', 'wp-error' => $message]);
+        do_action('rrze.log.error', ['plugin' => 'rrze-formular', 'wp-error' => $message]);
     }
 }

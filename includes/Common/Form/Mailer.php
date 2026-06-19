@@ -8,7 +8,7 @@ class Mailer
 {
     public static function getOptions(): array
     {
-        $options = get_option('rrze-formwizard', []);
+        $options = get_option('rrze-formular', []);
         return is_array($options) ? $options : [];
     }
 

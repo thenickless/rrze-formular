@@ -16,15 +16,15 @@ use RRZE\FormWizard\Common\API\SyncAPI;
 
         if (count($domains) > 0) {
             $i = 1;
-            echo '<style> .settings_page_rrze-formwizard #log .form-table th {width:0;}</style>';
+            echo '<style> .settings_page_rrze-formular #log .form-table th {width:0;}</style>';
             echo '<table class="wp-list-table widefat striped"><tbody>';
             foreach ($domains as $identifier => $url) {
                 echo '<tr><td><input type="checkbox" name="del_domain_' . esc_attr($i) . '" value="' . esc_attr($identifier) . '"></td><td>' . esc_html($identifier) . '</td><td>' . esc_url($url) . '</td></tr>';
                 $i++;
             }
             echo '</tbody></table>';
-            echo '<p>' . esc_html__('Please note: "Delete selected domains" will DELETE every FAQ and glossary entry on this website that has been fetched from the selected domains.', 'rrze-formwizard') . '</p>';
-            submit_button(esc_html__('Delete selected domains', 'rrze-formwizard'));
+            echo '<p>' . esc_html__('Please note: "Delete selected domains" will DELETE every FAQ and glossary entry on this website that has been fetched from the selected domains.', 'rrze-formular') . '</p>';
+            submit_button(esc_html__('Delete selected domains', 'rrze-formular'));
         }
         ?>
     </td>

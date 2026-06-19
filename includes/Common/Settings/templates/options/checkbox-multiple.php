@@ -19,7 +19,7 @@ defined('ABSPATH') || exit;
             <?php if ($description = $option->getArg('description')) : ?>
                 <p class="description"><?php echo $description; ?></p>
                 <?php if ($error = $option->hasError()) : ?>
-                    <div class="rrze-formwizard-settings-error"><?php echo $error; ?></div>
+                    <div class="rrze-formular-settings-error"><?php echo $error; ?></div>
                 <?php endif ?>
             <?php endif ?>
         </fieldset>

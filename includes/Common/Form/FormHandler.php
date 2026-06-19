@@ -9,17 +9,17 @@ class FormHandler
     public function handle(array $payload): array
     {
         if (!SpamProtection::checkRateLimit()) {
-            return $this->error(__('Too many submissions. Please try again later.', 'rrze-formwizard'), 429);
+            return $this->error(__('Too many submissions. Please try again later.', 'rrze-formular'), 429);
         }
 
         $honeypot = (string) ($payload['website'] ?? '');
         if (!SpamProtection::checkHoneypot($honeypot)) {
-            return $this->error(__('Spam detected.', 'rrze-formwizard'), 400);
+            return $this->error(__('Spam detected.', 'rrze-formular'), 400);
         }
 
         $token = (string) ($payload['token'] ?? '');
         if (!SpamProtection::verifyToken($token)) {
-            return $this->error(__('Invalid or too fast submission.', 'rrze-formwizard'), 400);
+            return $this->error(__('Invalid or too fast submission.', 'rrze-formular'), 400);
         }
 
         $attributes = $this->normalizeAttributes($payload['attributes'] ?? []);
@@ -27,7 +27,7 @@ class FormHandler
         $inputFields = array_values(array_filter($fields, static fn(array $field): bool => $field['type'] !== 'heading'));
 
         if ($inputFields === []) {
-            return $this->error(__('This form has no fields.', 'rrze-formwizard'), 400);
+            return $this->error(__('This form has no fields.', 'rrze-formular'), 400);
         }
 
         $values = is_array($payload['values'] ?? null) ? $payload['values'] : [];
@@ -37,7 +37,7 @@ class FormHandler
         if ($errors !== []) {
             return [
                 'success' => false,
-                'message' => __('Please fill in all required fields correctly.', 'rrze-formwizard'),
+                'message' => __('Please fill in all required fields correctly.', 'rrze-formular'),
                 'errors' => $errors,
                 'status' => 422,
             ];
@@ -45,7 +45,7 @@ class FormHandler
 
         $recipient = Mailer::resolveRecipient((string) ($attributes['recipientEmail'] ?? ''));
         if ($recipient === '') {
-            return $this->error(__('No valid recipient configured.', 'rrze-formwizard'), 500);
+            return $this->error(__('No valid recipient configured.', 'rrze-formular'), 500);
         }
 
         $options = Mailer::getOptions();
@@ -59,7 +59,7 @@ class FormHandler
 
         $sent = Mailer::sendOperatorMail($recipient, $subject, $mailBody);
         if (!$sent) {
-            return $this->error(__('The message could not be sent.', 'rrze-formwizard'), 500);
+            return $this->error(__('The message could not be sent.', 'rrze-formular'), 500);
         }
 
         $sendConfirmation = !empty($attributes['sendConfirmation']);
@@ -68,14 +68,14 @@ class FormHandler
             Mailer::maybeSendConfirmation(
                 true,
                 $submitterEmail,
-                sprintf(__('Confirmation: %s', 'rrze-formwizard'), $subject),
+                sprintf(__('Confirmation: %s', 'rrze-formular'), $subject),
                 $this->buildConfirmationBody($attributes, $inputFields, $sanitized)
             );
         }
 
         return [
             'success' => true,
-            'message' => sanitize_text_field((string) ($attributes['successMessage'] ?? __('Thank you. Your message has been sent.', 'rrze-formwizard'))),
+            'message' => sanitize_text_field((string) ($attributes['successMessage'] ?? __('Thank you. Your message has been sent.', 'rrze-formular'))),
             'status' => 200,
         ];
     }
@@ -86,7 +86,7 @@ class FormHandler
             'formTitle' => sanitize_text_field((string) ($attributes['formTitle'] ?? '')),
             'formDescription' => sanitize_textarea_field((string) ($attributes['formDescription'] ?? '')),
             'recipientEmail' => sanitize_email((string) ($attributes['recipientEmail'] ?? '')),
-            'submitLabel' => sanitize_text_field((string) ($attributes['submitLabel'] ?? __('Send', 'rrze-formwizard'))),
+            'submitLabel' => sanitize_text_field((string) ($attributes['submitLabel'] ?? __('Send', 'rrze-formular'))),
             'successMessage' => sanitize_text_field((string) ($attributes['successMessage'] ?? '')),
             'includeSsoInfo' => !empty($attributes['includeSsoInfo']),
             'sendConfirmation' => !empty($attributes['sendConfirmation']),
@@ -141,12 +141,12 @@ class FormHandler
             $value = $values[$id] ?? '';
 
             if (!empty($field['required']) && ($value === '' || $value === null)) {
-                $errors[$id] = __('This field is required.', 'rrze-formwizard');
+                $errors[$id] = __('This field is required.', 'rrze-formular');
                 continue;
             }
 
             if ($field['type'] === 'email' && $value !== '' && !is_email($value)) {
-                $errors[$id] = __('Please enter a valid e-mail address.', 'rrze-formwizard');
+                $errors[$id] = __('Please enter a valid e-mail address.', 'rrze-formular');
             }
         }
 
@@ -165,7 +165,7 @@ class FormHandler
             }
         }
 
-        return sprintf(__('Form submission: %s', 'rrze-formwizard'), $title);
+        return sprintf(__('Form submission: %s', 'rrze-formular'), $title);
     }
 
     private function buildMailBody(array $attributes, array $fields, array $values, ?array $ssoData): string
@@ -187,7 +187,7 @@ class FormHandler
             $value = $values[$field['id']] ?? '';
 
             if ($field['type'] === 'checkbox') {
-                $value = $value !== '' ? __('Yes', 'rrze-formwizard') : __('No', 'rrze-formwizard');
+                $value = $value !== '' ? __('Yes', 'rrze-formular') : __('No', 'rrze-formular');
             } elseif ($field['type'] === 'select' || $field['type'] === 'radio') {
                 foreach ($field['options'] as $option) {
                     if ($option['value'] === $value) {
@@ -206,8 +206,8 @@ class FormHandler
         }
 
         $lines[] = '';
-        $lines[] = __('Submitted from', 'rrze-formwizard') . ': ' . esc_url_raw((string) (wp_get_referer() ?: home_url('/')));
-        $lines[] = __('Date', 'rrze-formwizard') . ': ' . wp_date('Y-m-d H:i:s');
+        $lines[] = __('Submitted from', 'rrze-formular') . ': ' . esc_url_raw((string) (wp_get_referer() ?: home_url('/')));
+        $lines[] = __('Date', 'rrze-formular') . ': ' . wp_date('Y-m-d H:i:s');
 
         return implode("\n", $lines);
     }
@@ -215,7 +215,7 @@ class FormHandler
     private function buildConfirmationBody(array $attributes, array $fields, array $values): string
     {
         $lines = [
-            __('We received your submission.', 'rrze-formwizard'),
+            __('We received your submission.', 'rrze-formular'),
             '',
         ];
 

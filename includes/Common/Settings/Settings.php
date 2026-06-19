@@ -305,8 +305,8 @@ class Settings
             return;
         }
 
-        $script_path = plugin()->getPath() . 'build/rrze-formwizard-guided-tour.js';
-        $asset_path = plugin()->getPath() . 'build/rrze-formwizard-guided-tour.asset.php';
+        $script_path = plugin()->getPath() . 'build/rrze-formular-guided-tour.js';
+        $asset_path = plugin()->getPath() . 'build/rrze-formular-guided-tour.asset.php';
 
         if (!is_readable($script_path) || !is_readable($asset_path)) {
             return;
@@ -318,27 +318,27 @@ class Settings
         wp_enqueue_style('dashicons');
         wp_enqueue_style('wp-components');
 
-        $admin_css = plugin()->getPath() . 'build/css/rrze-formwizard-admin.css';
+        $admin_css = plugin()->getPath() . 'build/css/rrze-formular-admin.css';
         if (is_readable($admin_css)) {
             wp_enqueue_style(
-                'rrze-formwizard-admin-css',
-                plugin()->getUrl() . 'build/css/rrze-formwizard-admin.css',
+                'rrze-formular-admin-css',
+                plugin()->getUrl() . 'build/css/rrze-formular-admin.css',
                 [],
                 (string) filemtime($admin_css)
             );
         }
 
         wp_enqueue_script(
-            'rrze-formwizard-guided-tour',
-            plugin()->getUrl() . 'build/rrze-formwizard-guided-tour.js',
+            'rrze-formular-guided-tour',
+            plugin()->getUrl() . 'build/rrze-formular-guided-tour.js',
             $asset_file['dependencies'],
             $asset_file['version'],
             true
         );
 
         wp_set_script_translations(
-            'rrze-formwizard-guided-tour',
-            'rrze-formwizard',
+            'rrze-formular-guided-tour',
+            'rrze-formular',
             plugin()->getPath() . 'languages'
         );
 
@@ -347,7 +347,7 @@ class Settings
             $setupTourStepId = sanitize_key((string) wp_unslash($_GET['rrze_setup_tour_step']));
         }
 
-        wp_localize_script('rrze-formwizard-guided-tour', 'rrzeAnswersGuide', [
+        wp_localize_script('rrze-formular-guided-tour', 'rrzeAnswersGuide', [
             'autoStart' => !get_user_meta(get_current_user_id(), 'rrze_answers_guided_tour_dismissed', true),
             'autoStartSetup' => isset($_GET['rrze_setup_tour']),
             'setupTourStepId' => $setupTourStepId,
@@ -420,7 +420,7 @@ class Settings
             return;
         }
 
-        echo '<style>.rrze-formwizard-settings-error {color: #d63638; margin: 5px 0;}</style>';
+        echo '<style>.rrze-formular-settings-error {color: #d63638; margin: 5px 0;}</style>';
     }
 
     /**
@@ -497,7 +497,7 @@ class Settings
     public function addSection($title, $args = [])
     {
         if (empty($this->tabs)) {
-            $tab = $this->addTab(__('Unnamed tab', 'rrze-formwizard'));
+            $tab = $this->addTab(__('Unnamed tab', 'rrze-formular'));
         } else {
             $tab = end($this->tabs);
         }
@@ -643,21 +643,21 @@ class Settings
     public function save()
     {
         if (
-            !isset($_POST['rrze-formwizard_settings_save'])
+            !isset($_POST['rrze-formular_settings_save'])
             || !wp_verify_nonce(
-                $_POST['rrze-formwizard_settings_save'],
-                'rrze-formwizard_settings_save_' . $this->optionName
+                $_POST['rrze-formular_settings_save'],
+                'rrze-formular_settings_save_' . $this->optionName
             )
         ) {
             return;
         }
 
         if (!current_user_can($this->capability)) {
-            wp_die(__('You do not have enough permissions to do that.', 'rrze-formwizard'));
+            wp_die(__('You do not have enough permissions to do that.', 'rrze-formular'));
         }
 
         $currentOptions = $this->getOptions();
-        $submittedOptions = apply_filters('rrze-formwizard_settings_new_options', $_POST[$this->optionName] ?? [], $currentOptions);
+        $submittedOptions = apply_filters('rrze-formular_settings_new_options', $_POST[$this->optionName] ?? [], $currentOptions);
         $newOptions = $currentOptions;
 
         foreach ($this->getActiveTab()->getActiveSections() as $section) {
@@ -670,7 +670,7 @@ class Settings
                     continue;
                 }
 
-                $value = apply_filters('rrze-formwizard_settings_new_option_' . $option->implementation->getName(), $option->sanitize($value), $option->implementation);
+                $value = apply_filters('rrze-formular_settings_new_option_' . $option->implementation->getName(), $option->sanitize($value), $option->implementation);
 
                 $newOptions[$option->implementation->getName()] = $value;
             }
@@ -678,7 +678,7 @@ class Settings
 
         $this->updateOptions($newOptions);
 
-        $this->flash->set('success', __('Settings saved.', 'rrze-formwizard'));
+        $this->flash->set('success', __('Settings saved.', 'rrze-formular'));
     }
 
     /**
@@ -748,6 +748,6 @@ class Settings
     public function updateOptions($options)
     {
         update_option($this->optionName, $options);
-        do_action('rrze-formwizard_settings_after_update_option', $this->optionName, $options);
+        do_action('rrze-formular_settings_after_update_option', $this->optionName, $options);
     }
 }

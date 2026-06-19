@@ -16,7 +16,7 @@ $tour_attr = $option->getName() === 'new_url' ? ' data-rrze-tour="new-domain"' :
             <p class="description"><?php echo $description; ?></p>
         <?php } ?>
         <?php if ($error = $option->hasError()) { ?>
-            <div class="rrze-formwizard-settings-error"><?php echo $error; ?></div>
+            <div class="rrze-formular-settings-error"><?php echo $error; ?></div>
         <?php } ?>
     </td>
 </tr>

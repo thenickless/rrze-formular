@@ -13,13 +13,13 @@ defined('ABSPATH') || exit;
         $lines = Tools::readLogfileLines();
 
         if ($lines !== false && $lines !== []) {
-            echo '<style> .settings_page_rrze-formwizard #faqlog .form-table th {width:0;}</style><table class="wp-list-table widefat striped"><tbody>';
+            echo '<style> .settings_page_rrze-formular #faqlog .form-table th {width:0;}</style><table class="wp-list-table widefat striped"><tbody>';
             foreach ($lines as $line) {
                 echo wp_kses_post('<tr><td>' . esc_html($line) . '</td></tr>');
             }
             echo '</tbody></table>';
         } else {
-            echo esc_html(__('Logfile is empty.', 'rrze-formwizard'));
+            echo esc_html(__('Logfile is empty.', 'rrze-formular'));
         }
         ?>
     </td>

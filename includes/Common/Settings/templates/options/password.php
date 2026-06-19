@@ -15,7 +15,7 @@ defined('ABSPATH') || exit;
             <p class="description"><?php echo $description; ?></p>
         <?php } ?>
         <?php if ($error = $option->hasError()) { ?>
-            <div class="rrze-formwizard-settings-error"><?php echo $error; ?></div>
+            <div class="rrze-formular-settings-error"><?php echo $error; ?></div>
         <?php } ?>
     </td>
 </tr>
