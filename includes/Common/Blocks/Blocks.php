@@ -10,7 +10,7 @@ defined('ABSPATH') || exit;
  * This class is responsible for registering custom blocks for the plugin.
  * 
  * @package RRZE\FormWizard\Common
- * @since 0.0.1
+ * @since 0.0.2
  */
 class Blocks
 {
@@ -97,8 +97,8 @@ class Blocks
     {
         foreach ($this->blocks as $block) {
             wp_set_script_translations(
-                'rrze-formwizard-' . $block . '-editor-script',
-                'rrze-formwizard',
+                'rrze-formular-' . $block . '-editor-script',
+                'rrze-formular',
                 $this->pluginPath . 'languages'
             );
         }

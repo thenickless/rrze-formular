@@ -1,4 +1,4 @@
-.rrze-formwizard {
+.rrze-formular {
 	--rrze-fw-border: #c5c5c5;
 	--rrze-fw-accent: #004a7f;
 	--rrze-fw-bg: #fff;
@@ -11,11 +11,11 @@
 	background: var(--rrze-fw-bg);
 }
 
-.rrze-formwizard__title {
+.rrze-formular__title {
 	margin-top: 0;
 }
 
-.rrze-formwizard__progress {
+.rrze-formular__progress {
 	display: flex;
 	gap: 0.75rem;
 	padding: 0;
@@ -23,7 +23,7 @@
 	list-style: none;
 }
 
-.rrze-formwizard__progress-item {
+.rrze-formular__progress-item {
 	flex: 1;
 	padding: 0.5rem 0.75rem;
 	border: 1px solid var(--rrze-fw-border);
@@ -32,29 +32,29 @@
 	font-size: 0.875rem;
 }
 
-.rrze-formwizard__progress-item.is-active,
-.rrze-formwizard__progress-item.is-complete {
+.rrze-formular__progress-item.is-active,
+.rrze-formular__progress-item.is-complete {
 	border-color: var(--rrze-fw-accent);
 	color: var(--rrze-fw-accent);
 	font-weight: 600;
 }
 
-.rrze-formwizard__field {
+.rrze-formular__field {
 	margin-bottom: 1rem;
 }
 
-.rrze-formwizard__field label {
+.rrze-formular__field label {
 	display: block;
 	margin-bottom: 0.35rem;
 	font-weight: 600;
 }
 
-.rrze-formwizard__field input[type="text"],
-.rrze-formwizard__field input[type="email"],
-.rrze-formwizard__field input[type="tel"],
-.rrze-formwizard__field input[type="number"],
-.rrze-formwizard__field textarea,
-.rrze-formwizard__field select {
+.rrze-formular__field input[type="text"],
+.rrze-formular__field input[type="email"],
+.rrze-formular__field input[type="tel"],
+.rrze-formular__field input[type="number"],
+.rrze-formular__field textarea,
+.rrze-formular__field select {
 	width: 100%;
 	padding: 0.65rem 0.75rem;
 	border: 1px solid var(--rrze-fw-border);
@@ -62,8 +62,8 @@
 	font: inherit;
 }
 
-.rrze-formwizard__radio,
-.rrze-formwizard__checkbox {
+.rrze-formular__radio,
+.rrze-formular__checkbox {
 	display: flex;
 	align-items: flex-start;
 	gap: 0.5rem;
@@ -71,19 +71,19 @@
 	font-weight: 400;
 }
 
-.rrze-formwizard__heading {
+.rrze-formular__heading {
 	margin: 1.25rem 0 0.75rem;
 	font-size: 1.1rem;
 }
 
-.rrze-formwizard__nav {
+.rrze-formular__nav {
 	display: flex;
 	gap: 0.75rem;
 	margin-top: 1rem;
 }
 
-.rrze-formwizard__nav button,
-.rrze-formwizard__submit {
+.rrze-formular__nav button,
+.rrze-formular__submit {
 	padding: 0.65rem 1rem;
 	border: 0;
 	border-radius: 0.35rem;
@@ -93,33 +93,33 @@
 	cursor: pointer;
 }
 
-.rrze-formwizard__prev {
+.rrze-formular__prev {
 	background: #666;
 }
 
-.rrze-formwizard__error {
+.rrze-formular__error {
 	margin: 0.35rem 0 0;
 	color: var(--rrze-fw-error);
 	font-size: 0.875rem;
 }
 
-.rrze-formwizard__message {
+.rrze-formular__message {
 	margin-top: 1rem;
 	padding: 0.75rem 1rem;
 	border-radius: 0.35rem;
 }
 
-.rrze-formwizard__message.is-success {
+.rrze-formular__message.is-success {
 	background: #e8f5e9;
 	color: #1b5e20;
 }
 
-.rrze-formwizard__message.is-error {
+.rrze-formular__message.is-error {
 	background: #ffebee;
 	color: var(--rrze-fw-error);
 }
 
-.rrze-formwizard__hp {
+.rrze-formular__hp {
 	position: absolute;
 	left: -9999px;
 	width: 1px;
@@ -127,7 +127,7 @@
 	overflow: hidden;
 }
 
-.rrze-formwizard-block-editor .rrze-formwizard-field-editor {
+.rrze-formular-block-editor .rrze-formular-field-editor {
 	padding: 0.75rem;
 	margin-bottom: 1rem;
 	border: 1px solid #ddd;
@@ -135,14 +135,14 @@
 	background: #fafafa;
 }
 
-.rrze-formwizard-field-editor__actions {
+.rrze-formular-field-editor__actions {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.5rem;
 	margin-top: 0.75rem;
 }
 
-.rrze-formwizard-field-editor__option {
+.rrze-formular-field-editor__option {
 	margin-top: 0.5rem;
 	padding-top: 0.5rem;
 	border-top: 1px dashed #ddd;

@@ -33,32 +33,32 @@ class Main
 
     public function registerAssets(): void
     {
-        $cssPath = plugin()->getPath() . 'build/css/rrze-formwizard.css';
-        $jsPath = plugin()->getPath() . 'build/rrze-formwizard-frontend.js';
+        $cssPath = plugin()->getPath() . 'build/css/rrze-formular.css';
+        $jsPath = plugin()->getPath() . 'build/rrze-formular-frontend.js';
 
         wp_register_style(
-            'rrze-formwizard-css',
-            plugins_url('build/css/rrze-formwizard.css', plugin()->getBasename()),
+            'rrze-formular-css',
+            plugins_url('build/css/rrze-formular.css', plugin()->getBasename()),
             [],
-            file_exists($cssPath) ? filemtime($cssPath) : '0.0.1'
+            file_exists($cssPath) ? filemtime($cssPath) : '0.0.2'
         );
 
         wp_register_script(
-            'rrze-formwizard-frontend',
-            plugins_url('build/rrze-formwizard-frontend.js', plugin()->getBasename()),
+            'rrze-formular-frontend',
+            plugins_url('build/rrze-formular-frontend.js', plugin()->getBasename()),
             [],
-            file_exists($jsPath) ? filemtime($jsPath) : '0.0.1',
+            file_exists($jsPath) ? filemtime($jsPath) : '0.0.2',
             true
         );
 
-        wp_localize_script('rrze-formwizard-frontend', 'RRZEFormWizard', [
-            'restUrl' => rest_url('rrze-formwizard/v1/submit'),
+        wp_localize_script('rrze-formular-frontend', 'RRZEFormWizard', [
+            'restUrl' => rest_url('rrze-formular/v1/submit'),
             'nonce' => wp_create_nonce('wp_rest'),
             'i18n' => [
-                'submitting' => __('Sending…', 'rrze-formwizard'),
-                'success' => __('Thank you. Your message has been sent.', 'rrze-formwizard'),
-                'error' => __('The form could not be sent. Please try again later.', 'rrze-formwizard'),
-                'validation' => __('Please fill in all required fields correctly.', 'rrze-formwizard'),
+                'submitting' => __('Sending…', 'rrze-formular'),
+                'success' => __('Thank you. Your message has been sent.', 'rrze-formular'),
+                'error' => __('The form could not be sent. Please try again later.', 'rrze-formular'),
+                'validation' => __('Please fill in all required fields correctly.', 'rrze-formular'),
             ],
         ]);
     }
@@ -74,8 +74,8 @@ class Main
             ->setMenuParentSlug('options-general.php');
 
         foreach ($this->defaults->get('sections') as $section) {
-            $tab = $this->settings->addTab(__($section['title'], 'rrze-formwizard'), $section['id']);
-            $sec = $tab->addSection(__($section['title'], 'rrze-formwizard'), $section['id']);
+            $tab = $this->settings->addTab(__($section['title'], 'rrze-formular'), $section['id']);
+            $sec = $tab->addSection(__($section['title'], 'rrze-formular'), $section['id']);
 
             foreach ($this->defaults->get('fields')[$section['id']] as $field) {
                 $sec->addOption($field['type'], array_intersect_key(

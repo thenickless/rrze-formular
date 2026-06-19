@@ -37,7 +37,7 @@ class SpamProtection
             return false;
         }
 
-        $options = get_option('rrze-formwizard', []);
+        $options = get_option('rrze-formular', []);
         $minSeconds = max(1, (int) ($options['min_submit_seconds'] ?? 3));
 
         return (time() - (int) $data['t']) >= $minSeconds;
@@ -50,7 +50,7 @@ class SpamProtection
 
     public static function checkRateLimit(): bool
     {
-        $options = get_option('rrze-formwizard', []);
+        $options = get_option('rrze-formular', []);
         $limit = max(1, (int) ($options['rate_limit_per_hour'] ?? 10));
         $ip = self::getClientIp();
         $key = 'rrze_fw_rate_' . md5($ip);

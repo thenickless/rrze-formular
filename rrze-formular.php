@@ -1,15 +1,15 @@
 <?php
 
 /*
-Plugin Name:        RRZE Form Wizard
-Plugin URI:         https://github.com/RRZE-Webteam/rrze-formwizard
-Version:            0.0.1
+Plugin Name:        RRZE Formular
+Plugin URI:         https://github.com/RRZE-Webteam/rrze-formular
+Version:            0.0.2
 Description:        Simple form wizard for the block editor with automatic design, spam protection and secure mail delivery.
 Author:             RRZE Webteam
 Author URI:         https://www.wp.rrze.fau.de/
 License:            GNU General Public License Version 3
 License URI:        https://www.gnu.org/licenses/gpl-3.0.html
-Text Domain:        rrze-formwizard
+Text Domain:        rrze-formular
 Domain Path:        /languages
 Requires at least:  6.8
 Requires PHP:       8.2
@@ -21,7 +21,7 @@ use RRZE\FormWizard\Common\Plugin\Plugin;
 
 defined('ABSPATH') || exit;
 
-const RRZE_FORMWIZARD_PLUGIN = 'rrze-formwizard/rrze-formwizard.php';
+const RRZE_FORMWIZARD_PLUGIN = 'rrze-formular/rrze-formular.php';
 
 spl_autoload_register(function ($class) {
     $prefix = __NAMESPACE__;
@@ -72,7 +72,7 @@ function main(): Main
 function load_textdomain(): void
 {
     load_plugin_textdomain(
-        'rrze-formwizard',
+        'rrze-formular',
         false,
         dirname(plugin_basename(__FILE__)) . '/languages'
     );
@@ -82,8 +82,8 @@ function register_blocks(): void
 {
     register_block_type_from_metadata(__DIR__ . '/blocks/form-wizard');
 
-    $handle = generate_block_asset_handle('rrze-formwizard/form-wizard', 'editorScript');
-    wp_set_script_translations($handle, 'rrze-formwizard', plugin_dir_path(__FILE__) . 'languages');
+    $handle = generate_block_asset_handle('rrze-formular/form-wizard', 'editorScript');
+    wp_set_script_translations($handle, 'rrze-formular', plugin_dir_path(__FILE__) . 'languages');
 }
 
 function loaded(): void
@@ -106,13 +106,13 @@ function loaded(): void
 
             if (!$wpCompatible) {
                 $error = sprintf(
-                    __('The server is running WordPress version %1$s. The plugin requires at least WordPress version %2$s.', 'rrze-formwizard'),
+                    __('The server is running WordPress version %1$s. The plugin requires at least WordPress version %2$s.', 'rrze-formular'),
                     wp_get_wp_version(),
                     plugin()->getRequiresWP()
                 );
             } elseif (!$phpCompatible) {
                 $error = sprintf(
-                    __('The server is running PHP version %1$s. The plugin requires at least PHP version %2$s.', 'rrze-formwizard'),
+                    __('The server is running PHP version %1$s. The plugin requires at least PHP version %2$s.', 'rrze-formular'),
                     PHP_VERSION,
                     plugin()->getRequiresPHP()
                 );
@@ -121,7 +121,7 @@ function loaded(): void
             add_action('admin_notices', function () use ($pluginName, $error) {
                 printf(
                     '<div class="notice notice-error"><p>' .
-                    esc_html__('Plugins: %1$s: %2$s', 'rrze-formwizard') .
+                    esc_html__('Plugins: %1$s: %2$s', 'rrze-formular') .
                     '</p></div>',
                     esc_html($pluginName),
                     esc_html($error)

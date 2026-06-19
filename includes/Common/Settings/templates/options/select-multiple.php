@@ -29,7 +29,7 @@ if (str_starts_with($field_name, 'faq_categories_')) {
         <?php } ?>
 
         <?php if ($error = $option->hasError()) { ?>
-            <div class="rrze-formwizard-settings-error"><?php echo $error; ?></div>
+            <div class="rrze-formular-settings-error"><?php echo $error; ?></div>
         <?php } ?>
     </td>
 </tr>

@@ -17,7 +17,7 @@ class FormAPI
 
     public function registerRoutes(): void
     {
-        register_rest_route('rrze-formwizard/v1', '/submit', [
+        register_rest_route('rrze-formular/v1', '/submit', [
             'methods' => 'POST',
             'callback' => [$this, 'submit'],
             'permission_callback' => '__return_true',

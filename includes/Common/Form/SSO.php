@@ -53,17 +53,17 @@ class SSO
         }
 
         $lines = [
-            __('SSO / logged-in user', 'rrze-formwizard'),
-            __('Name', 'rrze-formwizard') . ': ' . $data['name'],
-            __('E-mail', 'rrze-formwizard') . ': ' . $data['email'],
+            __('SSO / logged-in user', 'rrze-formular'),
+            __('Name', 'rrze-formular') . ': ' . $data['name'],
+            __('E-mail', 'rrze-formular') . ': ' . $data['email'],
         ];
 
         if (!empty($data['login'])) {
-            $lines[] = __('Login', 'rrze-formwizard') . ': ' . $data['login'];
+            $lines[] = __('Login', 'rrze-formular') . ': ' . $data['login'];
         }
 
         if (!empty($data['source'])) {
-            $lines[] = __('Source', 'rrze-formwizard') . ': ' . $data['source'];
+            $lines[] = __('Source', 'rrze-formular') . ': ' . $data['source'];
         }
 
         return implode("\n", $lines);

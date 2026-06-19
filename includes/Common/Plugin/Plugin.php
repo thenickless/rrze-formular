@@ -13,7 +13,7 @@ defined('ABSPATH') || exit;
  * required WordPress version, and required PHP version.
  * 
  * @package RRZE\FormWizard\Common
- * @since 0.0.1x
+ * @since 0.0.2x
  */
 class Plugin
 {
